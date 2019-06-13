@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    /* 单行省略 */
+    .wrap{
+        width: 200px;
+        height: 150px;
+        background-color: skyblue;
+
+    }
+    .ellip{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis
+    }
+
+
+    /* 多行省略-webkit */
+    .ellip-mul{
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+
+    /* 多行省略-兼容方案 */
+    .ellip-elem {
+        position:relative;
+        line-height:1.4em;
+        height:4.2em;
+        overflow:hidden;
+    }
+    .ellip-elem:after {
+        content:"...";
+        position:absolute;
+        bottom:0;
+        right:0;
+        padding:0 5px;
+        background: skyblue
+    }
+</style>
+<body>
+    <div class="wrap ellip">
+        文字过多，省略内容，鼠标悬浮，显示全部内容
+    </div>
+
+    <div class="wrap ellip-mul">
+        文字过多，省略内容，鼠标悬浮，显示全部内容.文字过多，省略内容，鼠标悬浮，显示全部内容.文字过多，省略内容，鼠标悬浮，显示全部内容
+    </div>
+
+    <div class="wrap ellip-elem">
+            文字过多，省略内容，鼠标悬浮，显示全部内容.文字过多，省略内容，鼠标悬浮，显示全部内容.文字过多，省略内容，鼠标悬浮，显示全部内容
+    </div>
+
+</body>
+</html>

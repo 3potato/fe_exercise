@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+    <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+         
+
+    </style>
+</head>
+<body>
+   <div class="content"></div>
+
+   <p></p>
+   <p>还要继续往下看嘛?<p/>
+   <button>看</button><button>不看了吧</button>
+   <br>
+
+
+   <button id="btn1">点我点我</button>
+   <button>好了好了</button>
+    
+</body>
+<script  type="text/javascript">
+
+
+    var text = '北京欢迎你'
+    var n = 0
+    var m = 1
+    var timer = setInterval(function () {
+        document.getElementsByClassName('content')[0].innerHTML += text.slice(n, m)
+        ++n
+        ++m
+        if (n == text.length){
+            console.log(1);
+            clearInterval(timer)
+        }
+    }, 1000)
+
+
+
+    let text0 = '你今天过的好么.'
+    let text1 = '2018年了, 一切都挺好的, 时间过得真快...'
+
+    let sayFun = function(text) {
+      console.log(1);
+      let i = 0
+      let sayYou = function () {
+        setTimeout(function () {
+          document.getElementsByTagName('p')[0].innerText += text[i]
+          ++i
+          if (i < text.length) {
+            sayYou()
+          }else{
+            setTimeout(function(){
+              document.getElementsByTagName('p')[1].style.display = 'block'
+              document.getElementsByTagName('button')[0].style.display = 'block'
+              document.getElementsByTagName('button')[1].style.display = 'block'
+            },1000)
+          }
+        }, 500)
+      }
+      sayYou()
+    }
+
+    document.getElementById('btn1').onclick = function () {
+      sayFun(text0)
+    }
+    document.getElementsByTagName('button')[0].onclick = function () {
+      sayFun(text1)
+    }
+    document.getElementsByTagName('p')[1].style.display = 'none'
+    document.getElementsByTagName('button')[0].style.display = 'none'
+    document.getElementsByTagName('button')[1].style.display = 'none'
+
+
+
+
+</script>
+</html>

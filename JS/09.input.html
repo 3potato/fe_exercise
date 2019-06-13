@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Template</title>
+</head>
+<body>
+
+<input type="checkbox" id="inContent">
+<input type="text" id="showContent">
+
+<script type="text/javascript">
+    /*
+    1. input checkbox 选中选不中状态判断
+
+        jQuery写法
+            $('#inContent').is(':checked')
+
+        原生写法
+            document.getElementById('inContent').checked
+
+    */
+
+    var inCon = document.getElementById('inContent')
+    var showCon = document.getElementById('showContent')
+
+    inCon.onchange = function () {
+      if (inCon.checked){
+        showCon.value = '选中'
+      } else{
+        showCon.value = ''
+      }
+    }
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>input测试</title>
+		<style>
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			.wrapper{
+				position: relative;
+				margin: 10px;
+				border: 1px solid gray;
+				width: 300px;
+				height: 38px;
+			}
+			.item-input{
+				width: 250px;
+				height: 18px;
+				line-height: 18px;
+				border: 0;
+				outline: none;
+				padding: 10px 0px 10px 50px;
+				background: white;
+				font-size: 14px;
+				font-family: '\5b8b\4f53';
+			}
+			.item-label{
+				width: 38px;
+				height: 38px;
+				position: absolute;
+				border-right:1px solid gray;
+			}
+			.login-label{
+				background: url(img/pwd-icons-new.png) no-repeat;
+			}
+			.password-label{
+				background: url(img/pwd-icons-new.png) no-repeat;
+				background-position: -48px 0px;
+			}
+
+		</style>
+	</head>
+	<body>
+		<form action="">
+			<div class="wrapper">
+				<label for="login" class="login-label item-label"></label>
+				<input type="text" name="login" id="login" class="item-input" placeholder="邮箱/用户名/已验证手机">
+			</div>
+			<div class="wrapper">
+				<label for="password" class="password-label item-label"></label>
+				<input type="text" name="password" id="password" class="item-input" placeholder="密码">
+			</div>
+		</form>
+
+		<form action="">
+			<label for="login">登录</label>
+			<input type="text" id="login">
+			<label for="password">密码</label>
+			<input type="password" id="password">
+			<br>
+			<input type="checkbox" id="checkbox">星期一
+			<input type="checkbox" id="checkbox">星期二
+			<input type="checkbox" id="checkbox">星期三
+			<input type="checkbox" id="checkbox">星期四
+			<input type="checkbox" id="checkbox">星期五
+			<input type="checkbox" id="checkbox">星期六
+			<input type="checkbox" id="checkbox">星期日
+			<br>
+			<input type="radio" name="day" id="radio">上午
+			<input type="radio" name="day" id="radio">下午
+			<br>
+			<input type="button" id="button">按钮
+			<br>
+			<input type="submit" id="submit">
+
+		</form>
+	</body>
+
+	<script>
+        document.getElementById('password').addEventListener('click', function(){
+            alert('password')
+
+        })
+
+        document.getElementById('login').addEventListener('click', function(){
+            alert('login')
+
+        })
+	</script>
+</html>

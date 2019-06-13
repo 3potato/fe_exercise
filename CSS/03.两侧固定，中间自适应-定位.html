@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>两侧固定，中间自适应</title>
+		<style>
+			body{
+				margin:0;
+				padding:0;
+			}
+			#left{
+				position: absolute;
+				top:0;
+				left:0;
+				width: 200px;
+				height: 200px;
+				background-color: deepskyblue;
+			}
+			#right{
+				position: absolute;
+				top:0;
+				right:0;
+				width: 200px;
+				height: 200px;
+				background-color: greenyellow;
+			}
+			#center{
+				margin: 0 200px;
+				background-color: darkcyan;
+				height:200px;
+			}
+
+		</style>
+	</head>
+	<body>
+			<div id="left">1</div>
+			<div id="center">2</div>
+			<div id="right">3</div>
+		<!--这种方式三个div的顺序可以任意改变。
+此方法的优点在于：理解容易，上手简单，受内部元素影响而破坏布局的概率低，就是比较经得起折腾。
+缺点在于：如果中间栏含有最小宽度限制，或是含有宽度的内部元素，当浏览器宽度小到一定程度，会发生层重叠的情况。-->
+
+	</body>
+</html>

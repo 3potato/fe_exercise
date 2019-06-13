@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>两侧固定，中间自适应</title>
+		<style>
+			body{
+				margin:0;
+				padding:0;
+			}
+			#left{
+				float: left;
+				width: 200px;
+				margin-left: -100%;
+				height: 200px;
+				background-color: deepskyblue;
+			}
+			#right{
+				float: left;
+				width: 200px;
+				margin-left: -200px;
+				height: 200px;
+				background-color: greenyellow;
+			}
+			#center{
+				margin:0 200px;
+				background-color: darkcyan;
+				height:200px;
+			}
+			#main{
+				float: left;
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="main">
+			<div id="center">2</div>
+		</div>
+		<div id="left">1</div>
+		<div id="right">3</div>
+
+		<!--左右两栏div的顺序不分先后，但是主体部分div要放前面。
+此方法的优点在于：三栏相互关联，可谓真正意义上的自适应，有一定的抗性——布局不易受内部影响。
+缺点在于：相对比较难理解些，上手不容易，代码相对复杂。出现百分比宽度，过多的负值定位，如果出现布局的bug，排查不易。-->
+
+	</body>
+</html>

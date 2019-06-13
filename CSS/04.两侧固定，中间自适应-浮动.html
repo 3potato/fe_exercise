@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>两侧固定，中间自适应</title>
+		<style>
+			#left{
+				float: left;
+				width: 200px;
+				background-color: deepskyblue;
+				height: 200px;
+			}
+			#right{
+				float: right;
+				width: 200px;
+				background-color: greenyellow;
+				height:200px;
+			}
+			#center{
+				margin: 0 0 0 200px ;
+				background-color: darkcyan;
+				height:200px;
+			}
+
+		</style>
+	</head>
+	<body>
+			<div id="left">1</div>
+			<!--<div id="right">3</div>-->
+			<div id="center">2</div>
+		<!--此方法的优点是：代码足够简洁与高效
+缺点是：中间主体存在克星，clear:both属性。如果要使用此方法，需避免明显的clear样式。-->
+
+	</body>
+</html>

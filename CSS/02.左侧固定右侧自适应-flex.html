@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>左侧固定200px,右侧自适应</title>
+		<style>
+			#main{
+				display: flex;
+				flex-flow: row;
+				background-color: deeppink;
+			}
+			#left{
+				width:200px;
+				background-color: deepskyblue;
+				height: 400px;
+			}
+			#right{
+				flex: 1;
+				background-color: greenyellow;
+				height: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="main">
+			<div id="left">1</div>
+			<div id="right">2</div>
+		</div>
+
+	</body>
+</html>

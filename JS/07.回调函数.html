@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>回调函数</title>
+</head>
+<body>
+<script type="text/javascript">
+
+    var fun = function(a, b, callback){
+        var c =  a + b
+        console.log(c)
+        callback()
+    }
+
+    fun(1, 2, function () {
+      console.log(this)
+    })
+
+    console.log(6)
+
+</script>
+</body>
+</html>
