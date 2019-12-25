@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 1. 对象
+    // let data = {
+    //     message: 'test'
+    // }
+    // console.log(data)
+
+    // data.message = 222
+
+    // 2. 监听对象
+    // let data = Object.defineProperty({}, 'message', {
+    //     enumerable: true,
+    //     get() {
+    //         console.log('get value')
+    //         return 'test'
+    //     },
+
+    //     set(newVal) {
+    //         console.log('set')
+
+    //     }
+    // })
+    // console.log(data)
+
+    // 3. 数据劫持
+    // let obj = {
+    //     name:'aaa',
+    //     age:11
+    // }
+    // console.log(JSON.parse(JSON.stringify(obj)))
+    // Observe(obj)
+    // console.log(obj)
+    // obj.name
+    // obj.name = 111
+    // // 劫持数据
+    // function Observe(obj) {
+    //     Object.keys(obj).forEach((key)=>{
+    //         defineReat(obj, key, obj[key])
+
+    //     })
+    // }
+
+    // function defineReat(obj, key, value) {
+    //     Object.defineProperty(obj, key, {
+    //         configurable: true,
+    //         enumerable: true,
+    //         get() {
+    //             console.log('get...')
+    //             return value
+    //         },
+    //         set(newValue) {
+    //             console.log('set...')
+    //             value = newValue
+    //         }
+            
+    //     })
+
+    // }
+
+    // 4. proxy
+    let obj = {
+        name:'张三',
+        age:11
+    }
+
+    let newData = new Proxy(obj, {
+        get(target, key) {
+            console.log('get...')
+            return target[key]
+        },
+        set(target, key, newValue) {
+            console.log('set...')
+            target[key] = newValue
+        }
+    })
+
+    newData.name
+    newData.name = 222
+
+
+</script>
+</html>
