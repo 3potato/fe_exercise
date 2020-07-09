@@ -1,0 +1,41 @@
+1: 重绘与回流 哪些属性不需要重绘 transform 不会引起回流、 回流必定触发重绘，重绘不一定触发回流。重绘的开销较小，回流的代价较高。
+2: less scss   
+    less  不支持自定义函数。 要是想自定义函数需要引入less-plugin-functions、变量定义@开头 mixins写法为 .px2rem() 调用的到时候直接 .px2rem()调用
+    scss 支持自定义函数  @function px2rem()  mixins写法为@mixins 调用的时候为@incloudes
+
+3: style-loader less-loader
+    less-loader 解析 less 语法
+    css-loader  分析各文件之间的关系、合并成一段css文件
+    style-loader 的作用是把css-loader 处理过的css样式插入heade中的style标签中
+
+4: 布局 上下剧中 左右剧中 定位 是否脱离文档流
+    【垂直居中】1: flex布局（aligin-items: center）
+              2: table-cell、vertical-center:middle
+5: flex 布局
+    display:flex
+    aligin-items: center 垂直居中
+    justify-content: center 水平居中
+    flex-direction: colmun/ colmun-reserve
+6: 盒模型 
+    一个盒模型是由content padding border margin 组成的
+    box-sizing
+    content-box
+    border-box
+7: hotcss 1px 布局
+    1px: border-image border-show 使用伪元素 before after
+    hotcss: 根据屏幕dpr 设置缩放比。 设置根结点html的font-size的大小  320 * 20 /320 以【320】为基准
+    dpr 越大 根结点的font-size越大
+8:两列布局、三列布局
+    【浮动】【定位】【flex】【圣杯】【双飞翼】
+9: will-change: transform;
+
+10:  重绘和回流 【重点】
+    浏览器渲染页面的过程
+    html解构树 + css样式 = render tree => 绘制页面
+    dom树里面包含了所有的标签: 包括隐藏的和js插入的
+    【重绘】当元素样式、属性需要更新的时候而页面布局没有发生变化。只影响外观风格。 这个时候会发生重绘 （颜色、背景）
+    【回流】当页面元素的位置,尺寸、布局或者隐藏/显示 发生变化的时候而需要重新构建。这就称为回流(reflow)。
+    思考: 是不是可以这样理解, 只要页面布局没发生变化就不会触发回流。 
+    回流肯定会重绘
+
+    transform:translateZ(0) 将dom 设置成一个独立的图层。那么这个dom元素的重绘和回流的影响只会在本图层中。不会影响其他

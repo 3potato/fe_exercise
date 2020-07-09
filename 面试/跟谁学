@@ -1,0 +1,9 @@
+【1】url-loader 和 filer-loader的区别
+    url-loader 可以把图片压缩转化 base64的字符串
+    url-loader可以设置图片超过多少字节时，使用file-loader加载图片
+    file-loader 处理文件路径等
+【2】属性选择器的优先级
+    内联样式 > ID 选择器 > 类选择器 = 属性选择器 = 伪类选择器 > 标签选择器 = 伪元素选择器
+【3】webpack配置
+【4】
+

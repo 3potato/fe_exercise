@@ -1,0 +1,1 @@
+var obj = require('./c.js')

@@ -1,0 +1,10 @@
+1: vue-router的几种模式mode history.go() history.back() history.pushState(null,
+null, ) 1: hash #hash http请求中不会携带hash内容 对后端完全没有影响。
+hash改变也不会重新加载页面 对hashchange监听 触发回调执行render函数
+window.addEventListener('hashchange', function() { console.log('111') },false)
+window.location.hash = path 方式切换路由 2: history 不怕前进不怕后退、就怕刷新
+通过监听popstate 来触发回调 vue-router调用history.transitionTo切换路由
+1:transitionTo中先用目标路径和当前路径进行匹配 2:然后调用confirmTransition方法
+最后都会调用window.history.pushState(null, null, url) 来切换路由
+3:vue-router的的组件切换工作是有view-router完成。 view-router 是一个vue-router
+中的内置组件。 获取当前路由、然后匹配到当前路由对应的组件 通过render函数来渲染

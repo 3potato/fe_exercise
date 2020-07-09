@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var object = {
+            name: 'zhuziqi',
+            getName: function () {
+                console.log(this.name)
+            }
+        }
+        object.__proto__.getAge = function () {
+            console.log(12)
+        }
+        var copy = Object.create(object)
+        copy.getName = function () {
+            console.log('4444')
+        }
+        copy.getAge = function () {
+            console.log(13)
+        }
+        object.getName()
+        object.getAge()
+
+    </script>
+</body>
+
+</html>

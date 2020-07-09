@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function deepClone(object) {
+        if (!object || typeof object !== "object") {
+          return object;
+        }
+        var newObject =
+          Object.prototype.toString.call(object) === "[object Object]"
+            ? {}
+            : [];
+        for (const key in object) {
+          if (object.hasOwnProperty(key)) {
+            newObject[key] =
+              typeof object === "object" ? deepClone(object[key]) : object[key];
+          }
+        }
+        return newObject;
+      }
+      var ob = {
+        name: "zzz",
+        age: "23",
+        arr: [2, 3, 4],
+        detail: {
+          height: 175
+        }
+      };
+      var nob = deepClone(ob);
+      nob.name = "qqq";
+      nob.detail.height = 180;
+      nob.arr.push(12);
+      console.log(ob);
+      console.log(nob);
+    </script>
+  </body>
+</html>

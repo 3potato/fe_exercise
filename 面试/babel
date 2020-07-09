@@ -1,0 +1,25 @@
+babel7:
+babel-loader + @babel/preset-env + @babel/polyfill + @babel/plugin-transform-runtime
+【】@babel/preset-env 用来转化语法
+    1: () => {} 箭头函数
+    2: let const 
+    3: export import 模块话
+    4: 运算符扩展 ...arr ...obj
+    5: 解构赋值 
+        let [a,b,c] = [1,2,3]
+        let { age } = { age: 56 }
+    6: 默认参数
+        function fun(params = {}) {
+
+        }
+    7: class extend
+    8: 字符串模板
+            `${str}ewew` => ''.concat('ewew')
+【】@babel/polyfill 用来处理新的es6 api 
+    当运行环境中不支持一些api时, polyfill 会引入一个相关的文件做兼容
+    (垫片的方式在目标环境中添加缺失的特性)
+    1: promise
+    2: assigin includes every 
+    3: Map Set Symbol 等全局对象
+【】@babel/plugin-transform-runtime
+    帮助函数, 引用他后帮助函数就会从@babel/runtime/helpers中引入。 从而优化我们的代码。 缩小打包体积

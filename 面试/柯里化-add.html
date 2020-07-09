@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function add() {
+            var args = [].slice.call(arguments)
+            var _add = function () {
+                var addArgs = [].slice.call(arguments)
+                args.push(...addArgs)
+                return _add
+            }
+            _add.toString = function () {
+                return args.reduce((p, n) => {
+                    return p + n
+                })
+            }
+            return _add
+        }
+        function add1(x) {
+            var totalNum = x
+            var _add = function (y) {
+                totalNum = totalNum + y
+                return _add
+            }
+            _add.toString = function () {
+                return totalNum
+            }
+            return _add
+        }
+        console.log(add(1)(2)(3))
+        console.log(add1(1)(2)(3))
+
+        function curry(fn) {
+            return function _curry(...args) {
+                if (args.length > fn.length) {
+
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

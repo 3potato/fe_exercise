@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .demo {
+            width: 100px;
+            height: 4000px;
+            background: hotpink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo"></div>
+    <script>
+        function fnc() {
+            return new Promise((res, rej) => {
+                setTimeout(() => {
+                    res('11')
+                }, 2000);
+            })
+        }
+        function srcollFun(fn, timer, immediate) {
+            var task = null
+            var falg = true
+            return function () {
+                console.log('tag', '')
+                var that = this
+                if (fn && fn().then) { // 如果是异步的
+                    console.log('then', '')
+                    if (!task) {
+                        task = fn().then((res) => {
+                            console.log(res)
+                            task = null
+                        })
+                    } else {
+                        task = null
+                    }
+                }
+                if (immediate && falg) { // 如果是立即执行一次
+                    fn()
+                    falg = false
+                    task = setTimeout(() => {
+                        fun.call(this)
+                    }, timer)
+                }
+                if (task) {
+                    clearTimeout(task)
+                    task = null
+                } else {
+                    task = setTimeout(() => {
+                        fn()
+                    }, timer);
+                }
+            }
+        }
+        window.addEventListener('scroll', srcollFun(fnc, 1000, true))
+    </script>
+</body>
+
+</html>

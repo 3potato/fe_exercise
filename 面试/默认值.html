@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function func(object, arrary) {
+            var object = object || {}
+            var arrary = arrary || []
+
+            if (arrary.length > 0) {
+                var item = arrary.shift()
+                var childObject = object[item]
+                if (childObject) {
+                    return func(childObject, arrary)
+                } else {
+                    return '未知'
+                }
+            } else {
+                return object
+            }
+        }
+        var obj = {
+            a: {
+                b: {
+                    c: 4
+                }
+            }
+        }
+        console.log(func(obj, ['a', 'b', 'c', 'd']))
+    </script>
+</body>
+
+</html>

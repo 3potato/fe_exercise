@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 先实现一个call函数
+      Function.prototype.mycall = function(context) {
+        var context = context || window;
+        context.fn = this;
+        let arg = [];
+        for (let index = 1; index < arguments.length; index++) {
+          arg.push(arguments[i]);
+        }
+        let res = context.fn(arguments[1], arg);
+        delete context.fn;
+        return res;
+      };
+      console.log(Object.prototype.toString.mycall());
+
+      Function.prototype.mybind = function(context) {
+        var self = this; //  指向调用对象
+        let args = [].slice.call(arguments, 1); // 获取第二个到最后一个参数
+        return function() {
+          var bindArg = [].slice.call(arguments);
+          self.apply(context, [...args, ...bindArg]);
+        };
+      };
+    </script>
+  </body>
+</html>

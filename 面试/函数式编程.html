@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function fn(dom) {
+
+        }
+        function compose(fn, fn1, fn2) {
+            return function (params) {
+
+            }
+        }
+
+        function add(x) {
+            return x + 4
+        }
+        function multiply4(y) {
+            return y * 4
+        }
+        multiply4(add(5))
+
+        function fun1(add, multiply) {
+            return function (y) {
+                return multiply(add(y))
+            }
+        }
+
+        function compose() {
+            var args = [].slice.call(arguments)
+            var start = args.length - 1
+            return function () {
+                var i = start - 1
+                var reslut = args[start].apply(this, arguments) // 执行最后一个函数的结果
+                while (i >= 0) {
+                    reslut = args[i].apply(this, reslut)
+                    i--  // 基本思路就是 执行一个函数然后把执行结果返回给另一个函数调用
+                }
+            }
+            return reslut
+        }
+    </script>
+</body>
+
+</html>

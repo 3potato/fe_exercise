@@ -1,0 +1,10 @@
+Function.prototype.bind = function() {
+    var self = this // 指向调用函数
+    var arg = [].slice.call(arguments, 1)
+    var _bind =  function() {
+        var bindArgs = [].slice.call(arguments)
+        return self.apply(this instanceof _bind ? this: context, [...arg, ...bindArgs])
+    }
+    _bind.prototype = new self()
+    return _bind
+}

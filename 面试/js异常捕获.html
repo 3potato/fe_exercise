@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<div>
+    <img src="http://a.b.com/a/jpg" alt="">
+    <img src="http://a.b.com/b/jpg" alt="">
+    <img src="http://a.b.com/c/jpg" alt="">
+
+</div>
+
+<body>
+    <script src="http://a.com/api/getname" crossorigin></script>
+    <script>
+        // var scriptList = document.getElementsByTagName('script')
+        // console.log(scriptList)
+        // var list = [].slice.call(scriptList)
+        // list.forEach(script => {
+        //     if (script.src) {
+        //         script.setAttribute('onerror', (e) => {
+        //             console.log(e)
+        //         })
+        //     }
+        // });
+        // try {
+        //     function a() {
+        //         console.log(ccc)
+        //     }
+        //     a()
+        // } catch (e) {
+        //     // 可以做一些上报之类的
+        //     console.log(e)
+        // }
+        window.addEventListener('error', function (event) {
+            if (event.target.nodeName === 'IMG') {
+                console.log('图片资源报错')
+                console.log(event)
+                return true
+            }
+        }, true)
+        window.onerror = function (event) {
+            console.log('tag', event)
+            return true
+        }
+        window.addEventListener('unhandledrejection', (event) => {
+            console.log('promise出错了')
+        })
+        Promise.reject('111')
+        setTimeout(() => {
+            console.log(vvvv)
+        }, 1000);
+        // window.onerror = function (message, source, lineno, colno, error) {
+        //     console.log(message, source, lineno, colno, error)
+        // }
+        // function b() {
+        //     c()
+        //     console.log(ddd)
+        // }
+        // b()
+
+    </script>
+</body>
+
+</html>

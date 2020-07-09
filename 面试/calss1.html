@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class A {
+            constructor() {
+                this.name = 'zhuziqi'
+            }
+            static age = 34
+            getName() {
+
+            }
+            static getAge() {
+                console.log('getAge', 'tag')
+            }
+
+        }
+        class B extends A {
+            constructor() {
+                super()
+            }
+        }
+        console.log(A.getAge())
+        console.log(A.age)
+        var a = new A()
+        console.log(a)
+        console.log('b', B.getAge())
+        console.log('b', B.age)
+    </script>
+</body>
+
+</html>

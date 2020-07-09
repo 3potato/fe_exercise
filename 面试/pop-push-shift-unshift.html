@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Shed {
+            constructor() {
+                this.arr = []
+            }
+            // 先进
+            add(item) {
+                this.arr.push(item)
+            }
+            // 先出， 删除的永远是第一个
+            romove() {
+                this.arr.shift()
+            }
+        } 
+    </script>
+</body>
+
+</html>

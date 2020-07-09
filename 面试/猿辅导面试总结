@@ -1,0 +1,11 @@
+猿辅导总结
+nextTick: 
+    什么场景下会用到
+    原理是什么
+    1:microTimerFunc  [微任务函数]
+    2:macroTimerFunc  [宏任务函数]
+
+
+MessageChannel 和settimeout 一样是一个宏任务
+还有 postMessage、setImmediate、
+常见的微任务: [MutationObsever、Promise.then]

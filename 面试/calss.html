@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        * 原型链继承和es6的extend继承是有本质的区别的
+        * es6 是通过Object.setPrototypeOf(B.prototype, A.prototype) bject.setPrototypeOf(B, A)实现的继承
+        * es5 不能继承 Array、 Boolean、Number, String 等的原生构造函数
+        * es6 可以的
+        */
+        class Ajax {
+            constructor(method, url) {
+                this.method = method
+                this.url  = url
+            }
+            get() {
+                console.log('ajax.get')
+            }
+        }
+        const ajax = new Ajax('GET', 'http://www.baidu.com')
+        console.log(ajax)
+        console.log(ajax)
+        class AjaxGet extends Ajax{
+            constructor(url, params) {
+                super('GET', url)
+                this.params = params
+            }
+        }
+        var ajaxGet = new AjaxGet('http://maodou.com', {id: 111})
+        console.log(Object.getPrototypeOf(AjaxGet) === Ajax)
+        console.log(ajaxGet)
+        console.log(ajaxGet instanceof Ajax) //  true
+        console.log(ajaxGet instanceof AjaxGet) //  true
+        console.log(AjaxGet.__proto__ === Ajax)
+        console.log(AjaxGet.prototype.__proto__ === Ajax.prototype)
+    </script>
+</body>
+</html>

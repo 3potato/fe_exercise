@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .content {
+        width: 100%;
+        height: 50px;
+      }
+      .left {
+        float: left;
+        width: 100px;
+        height: 50px;
+        background: red;
+      }
+      .right {
+        margin-left: 100px;
+      }
+      .content1 {
+        width: 100%;
+        display: flex;
+      }
+      .left-1 {
+        width: 100px;
+        height: 50px;
+        background: yellow;
+      }
+      .right-1 {
+        flex: 1;
+        height: 50px;
+      }
+      .content2 {
+        position: relative;
+        width: 100%;
+        height: 50px;
+      }
+      .left-2 {
+        position: absolute;
+        left: 0;
+        width: 200px;
+      }
+      .right-2 {
+        position: absolute;
+        right: 0;
+        left: 0;
+        margin-left: 200px;
+      }
+      .content-3 {
+        width: 100%;
+        height: 50px;
+        display: flex;
+      }
+      .left-3,
+      .right-3 {
+        background: burlywood;
+        width: 100px;
+      }
+      .center-3 {
+        background: chartreuse;
+        flex: 1;
+      }
+      .content-4 {
+        width: 100%;
+        height: 50px;
+      }
+      .left-4 {
+        float: left;
+        width: 200px;
+      }
+      .right-4 {
+        float: right;
+        width: 200px;
+      }
+      .center-4 {
+        margin: 0 200px;
+      }
+      .wrap {
+        min-width: 600px;
+      }
+      #header,
+      #footer {
+        height: 50px;
+        width: 100%;
+        border: 1px solid;
+        background-color: grey;
+      }
+      #content {
+        overflow: hidden;
+        padding: 0px 200px;
+      }
+      #left,
+      #right {
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+      }
+      #middle {
+        background-color: green;
+        width: 100%;
+      }
+      #middle,
+      #left,
+      #right {
+        float: left;
+        padding-bottom: 10000px;
+        margin-bottom: -10000px;
+      }
+      #left {
+        margin-left: -100%;
+        position: relative;
+        left: -200px;
+      }
+      #right {
+        margin-left: -200px;
+        position: relative;
+        left: 200px;
+      }
+      .main {
+        width: 100%;
+        height: 100px;
+        display: table;
+      }
+      .main-left,
+      .main-right {
+        vertical-align: middle;
+        display: table-cell;
+      }
+      .main-left {
+        width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 两列布局: 三种方式 【浮动】【flex】【绝对定位】 -->
+    <!-- 两列布局  demo1-->
+    <div class="content">
+      <div class="left"></div>
+      <div class="right">
+        21
+      </div>
+    </div>
+    <div class="content1">
+      <div class="left-1">212</div>
+      <div class="right-1">2121</div>
+    </div>
+    <div class="content2">
+      <div class="left-2">
+        left-1
+      </div>
+      <div class="right-2">
+        right-2
+      </div>
+    </div>
+    <!-- 三列布局 float flex 绝对定位 -->
+    <div class="content-3">
+      <div class="left-3">left</div>
+      <div class="center-3">center</div>
+      <div class="right-3">right</div>
+    </div>
+
+    <div class="content-4">
+      212
+      <div class="left-4">left</div>
+      <div class="right-4">right</div>
+      <div class="center-4">center</div>
+    </div>
+    <!-- 三列布局 圣杯布局 -->
+    <div class="wrap">
+      <!-- <div id="header">header</div> -->
+      <div id="content">
+        <div id="middle">
+          <p>middle</p>
+          <p>middle</p>
+          <p>middle</p>
+        </div>
+        <div id="left">left</div>
+        <div id="right">right</div>
+      </div>
+      <!-- <div id="footer">footer</div> -->
+    </div>
+    <div class="main">
+      <div class="main-left">2121</div>
+      <div class="main-right">2121</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 实现一个简单的promise
+        class Promise {
+            constructor(fn) {
+                let that = this
+                this.resolveArray = [] // 保存成功回调
+                this.rejectArray = [] // 保存失败回调
+                this.state = 'padding' // 
+                this.value = undefined
+                this.reason = undefined
+                let resolve = (value) => {
+                    if (that.state === 'padding') {
+                        that.state = 'fulfilled' // 中态
+                        that.value = value
+                        for (let i = 0; i < that.resolveArray.length; i++) {
+                            that.resolveArray[i].call(null, value)
+                        }
+                    }
+                }
+                let reject = (value) => {
+                    if (this.state === 'padding') {
+                        this.state = 'reject'
+                        this.value = value
+                    }
+                }
+                setTimeout(() => {
+                    fn(resolve, resolve)
+                })
+            }
+            then(callback) {
+                this.resolveArray.push(() => {
+                    callback(this.value)
+                })
+                // return new Promise((resolve, reject) => {
+                //     resolve(callback(this.value)) 
+                // })
+            }
+            static resolve(data) {
+                return new Promise((resolve) => {
+                    resolve(data)
+                })
+            }
+            static reject(err) {
+                return new Promise((reject) => {
+                    reject(err)
+                })
+            }
+            static all(promiseArray) {
+                return new Promise((resolve, reject) => {
+                    let num = 0
+                    let result = []
+                    promiseArray.forEach(item => {
+                        item.then((data) => {
+                            num++
+                            result.push(data)
+                            if (num === promiseArray.length) {
+                                resolve(result)
+                            }
+                        }).catch((err) => {
+                            reject(err)
+                        })
+                    })
+                })
+            }
+        }
+
+        // Promise.resolve({code:0, msg: 'msg'})
+
+        new Promise((resolve, reject) => {
+            resolve({ code: 0, data: {}, msg: '' })
+        }).then(res => {
+            console.log(res, 'res')
+            return '11111'
+
+        })
+            .then(res => {
+                console.log(res)
+                return 'ppppp'
+            }).then(res => {
+                console.log(res)
+            })
+
+        function promise() {
+            return new Promise((resolve, reject) => {
+                resolve({ code: 0, data: 'hhh' })
+            })
+        }
+        promise().then(res => { console.log('ttt') }, err => { console.log('err') })
+    </script>
+</body>
+
+</html>

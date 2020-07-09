@@ -1,0 +1,54 @@
+1:webpack: 代码分割
+【入口】【出口】【loader】【插件】
+2:loader
+    使webpack拥有解析非js文件的能力, plugin可以扩展webpack的功能。
+    loader的作用就是提取、对不同格式的文件进行处理。
+    vue-loader都是做了哪些事情?
+    【1】解析.vue文件。提取出其中的style【样式】script template。交给他们对应的loader进行处理
+     会把模板解析成render函数。 这一步是帮助vue提前做了编译工作。
+3: amd cmd umd commonjs 
+4: reuqire 和import
+5: 天生不处理css 文件、 要想 处理css 就要添加 css-loader 和 style-loader
+    css-loader去处理css 文件 style-loader 会把处理后的css 样式 插入到html head中
+6: vue文件要经过vue-loader 处理 处理里面的模板、 style 和 script
+    less 文件需要经过 less-loader css-loader处理。
+    style-loader可以以style标签的形式插入html的heade。 
+    MiniCssExtractPlugin可以帮助把样式提取出来放到一个css文件中引入
+    MiniCssExtractPlugin只推荐生产环境用。开发环境会造成热更新失效
+7: optimization 公共部分提取
+    强大的SplitChunks
+    webpack4 舍弃了之前的commonChunkPlugin。 commonChunkPlugin有哪些缺点
+    optimization: {
+        optimization: {
+            chunks: 'async', // 默认只对按需加载的模块起作用。async|异步、 all|所用模块、 initial| 初始化加载的模块,即同步模块
+            minSize: 30000, 模块大小, 只有超过这个数子参会被切割split
+            maxSize: 默认值0，代表不限制。
+            minChunks: 1, //module至少被多少chunk引用才会生成新chunk
+        }
+    }
+    也可打包指定的less|scss|sass
+8: mini-css-extract-plugin
+    可以提取css样式
+    用法: new MiniCssExtractPlugin({
+        filename: [name].css
+    })
+    new MiniCssExtractPlugin({
+        filename: [name].css,
+        chunkFilename: '[name].min.[hash].css'
+    })
+9: webpack热更新
+    hot: true
+    模块热更新会在程序运行过程中替换、添加、或删除模块而无需刷新整个页面。
+    保留页面状态
+    只更新变更内容
+    在源码中对css、js进行修改会立刻在浏览器中更新
+    【1】webpack的文件监听机制
+    【2】webpack启动过程中会调用Compiler类的run 方法开启构建过程。
+10: webpack优化
+    【1】尽量少使用三方依赖包 例如monent
+    【2】按需引入依赖。 例如: lodash e-chart 等体积比较大的公有包 都是支持按需引入的。按需引入我们需要的模块。
+    【3】优化resolve.extensions配置、设置解析文件后缀
+    【4】优化loader配置。缩小匹配范围。通过 include exclude 来减少匹配文件
+    【5】splitChunks  提取公共模块 
+    【6】cache-loader
+ 

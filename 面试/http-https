@@ -1,0 +1,75 @@
+http 报文的组成部分
+【请求报文】
+    请求行: 请求方法【get|post|options】/url【其实就是api】| 协议版本【http1.1 | http1.0】
+    请求头部: request Header 【host】【content-type】【accpet】【User-Agent】
+    空行 // 空行用来分割头部信息和请求体
+    请求体 【参数】
+【响应报文】
+    响应行
+    响应头部
+    空行
+    响应体
+状态码:
+    2xx
+        status Code: 200  // 请求成功 请求被接受处理
+        204: 服务器接受但是没content返回
+    3xx
+        301:永久重定向
+        302:临时重定向
+        303:临时重定向 使用get访问
+        304: not modifiled  有缓存 【exporis】【cach-control】 | 【last-modifiled】【if-modifiled-since】 | 【etag】【if-none-match】 【强制缓存和协商缓存】
+    4xx
+        400: bad request 参数错误。 服务端无法理解
+        401: 用户信息未验证 （未登陆）
+        403: 服务端收到请求但拒绝提供服务
+        404: 路径错误/请求资源不存在
+    5xx
+        500: 服务器错误
+        503: 服务器不能处理当前请求
+http的作用
+【自我理解】
+ http是客户端和服务端通信的桥梁。来帮助我们从客户端获取资源
+ 围绕这件事进行了许多优化。 提供一些参数来更好的做这件事。
+ cookie或者token
+ cookie: 储存用户信息 大小为4kb
+
+ localStorage: 本地存贮、永久有效 除非手动清空 一般为5M
+ sessionStorage: 具有会话作用域, 一般为5M
+
+ http是无状态说的协议。 服务端需要验证我们的身份。 cookie 用来保存我们的身份信息。
+ 浏览器缓存策略
+    contection: keep-alive
+    accept 
+    content-type
+    accept-encodeing
+    content-encodeing
+    user-agent
+    传输数据方面的优化
+    http1.0 
+        contection字段: keep-alive
+        数据压缩 accept-encodeing
+    http1.1
+        默认keep-alive 【持久链接】
+        管道机制: 一个链接里面可以发送多个请求。 但是服务端要挨个处理， 会阻塞
+        分块传输编码: 流模式 Transfer-Encoding: chunked
+            来一块处理一块。 每一块上有标记
+从输入url到显示出页面要经多哪些过程
+    url -> 域名解析(这个过程会一步步寻找域名对应的ip地址,) 
+    -> 封装http数据包 
+    -> tcp/ip 三次握手 
+    -> 客户端发送请求
+    -> 服务端响应请求 
+    -> 关闭tcp/四次挥手
+    -> 然后客户端获取html文件
+    -> 开始解析头部style文件
+    -> 获取link 和script标签中的资源 -> (是否使用缓存|是否有缓存) -> 再一次发送请求获取css js 资源。 然后css + dom = render tree > 渲染页面
+https = http+ ssl
+    就是比http层多了一个密钥层
+
+http缺点：使用明文 ，内容容易被抓取
+https 加密内容  不容易被抓取 通过一些加密算法对传输数据进行加密
+tls/ssl 散列hash + 非对称加密+对称加密
+
+
+
+

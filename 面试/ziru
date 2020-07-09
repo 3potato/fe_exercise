@@ -1,0 +1,133 @@
+1: 模块化和组件化的理解;
+    【1】组件话更多关注ui层面、页面的每个部件(header、foooter、 list、table、cell、input) 组件化的好处就是让一个组件完成一个独立的功能。 提高复用性。避免重复开发
+    【2】模块化侧重功能的封装、js代码隔离封装成一个个特有的功能模块(ajax)  提供更底层的服务
+      模块可以通过修改参数的不同修改功能的相关配置。每个模块都有他自己的作用域
+      把做什么和怎么做分开。 模块负责做什么(即实现功能)。 参数告诉模块怎么做。 模块之间存在相互依赖的关系
+    【工程化】前端项目当成一个系统的工程进行分析、组织、构建
+2: js node 事件循环 
+    js为单线成语言。 
+     按照顺序【任务队列】执行文档中的变量或者函数。
+      每个任务执行的时候都会创建一个他自己的上下文环境
+      遇到异步函数会把异步函数放在一个异步执行栈里面
+
+     【】所有所有同步任务都在主线程上执行。形成任务执行栈。
+     【】主线程之外还有一个异步任务队列。只要异步任务有了结果。就会在异步任务队列中放置一个事件。
+        只要所有的同步任务执行完了之后。就会去看异步队列里面有哪些事件。然后执行其结果。
+        浏览器循环以上两部:
+        主线程规定现在执行的是执行栈中的哪个事件
+        主线成循环: 主线成会循环读取执行栈中的事件 event loop
+        执行栈【a,b,c,d,e】
+        任务队列: 异步任务执行计结束之后会在执行队列里面加一个事件。等所有的同步任务执行结束之后就会挨个执行任务队列里面的事件
+        微任务会放在执行栈之后， 任务队列之前
+    为什么要这么设计: js 是单线程语言。要是不分同步异步挨个执行的话，异步任务可能会阻塞太久。体验不好。
+    webworker: 仿多线程。 以主线程为主。其余线程不会操作dom
+3: 路由hash和history的理解 区别
+    【hash】类似锚点的形式。url中有hash。hash改变不会触发页面刷新。 http请求中不会带hash值。 前进后退的时候会触发hashchange事件的监听
+    【history】通过h5 api history对象 pushstate和replacestate改变路由不刷新页面
+    hash 1: #锚点的形式, hash变化不会刷新html页面。 http请求中不会携带hash。
+    只有用户点击浏览器倒退按钮和前进按钮 监听hashchange的变化触发相应的回调 histroy:
+    使用h5的histtory api 实现。 pushState和replaceStates 实现路由跳转页面不刷新
+    监听的是popstate 前进或者回退的时候会触发 监听popstate事件触发相应回调。
+    刷新页面的时候 会请求url 对应的资源。 需要配合后端使用
+
+4: xss
+
+5: 两列布局 三列布局 
+6: js设置div高度 宽度 
+    element.style.height = '200px'
+    element.setAttrbute('height', '200px')
+7: bind 的实现 
+    Function.prototype.bind2 = function(context) {
+        let self = this
+        let args = [].slice.call(argumennts)
+        return function() {
+            var bindArgs =  [].slice.call(argumennts)
+            self.apply(context, [...args, ...bindArgs])
+        }
+    }
+8: 提升页面性能
+  1: 静态资源的合并压缩。减少http请求，减小文件大小
+  2: 使用雪碧图或者字体文件。 减少图片文件的请求。 图片压缩, 图片懒加载(进入可视区的时候再加载)
+  3: 使用cdn。 如果web服务器更近。http请求的相应时间将缩短。
+  4: 使用浏览器缓存、 浏览器缓存又分为协商缓存和强制缓存【这是个知识点要记住】
+  5: Accept-Encoding: gzip, 文件压缩 【content-encodeing】【这几个点属于代码优化】
+  6: 减少dom操作。变量缓存、减少闭包使用。手动释放不会被自动回收的变量
+  7: 301: 永久重定向 302: 临时重定向 304: not-modified 有缓存
+  8: 中心思想就是减少多余资源的加载。
+
+9: http 缓存 强制缓存 协商缓存 
+  【内存缓存和磁盘缓存】
+  【内存缓存、读取迅速、比较小。 适合存比不是太大的文件】 会话关闭缓存清空。 优先读物内存缓存的
+  【磁盘缓存】可以存比较大的文件。 读取缓慢
+  【强制缓存】cache-control: max-age=2000, 在缓存有效期。 浏览器直接读取本地缓存。不需要和服务端进行通信。
+  【协商缓存】max-age失效后。 
+10: 设计组件应该注意哪些事情 
+    ui组件:【可扩展性】【api可读性】【职责单一原则】【可复用性】【和业务的低耦合】【公共部分的抽离 然后mixin引入或者混入】
+    业务组件: 【针对一类业务问题给出的解决方案】【和业务有一定的耦合性】【粒度比较大】【注意分层】【依赖基础ui组件】
+    【一些带network的业务组件需要做数组缓存和网络缓存】
+11: httponly 
+12: target cruenttarget 
+  event.target: 当前触发元素
+  event.cruenttarget: 当前监听元素
+  dataset.index 获取索引
+13: js设置元素高度 .style setattrsbute 
+14: css重绘和回流 
+    css样式表 + dom树 = render tree => 渲染页面
+    重绘: 页面布局没有发生变化 元素位置没有发生变化的时候 仅仅样式(颜色、背景等发生改变会触发重绘机制)
+    回流: 当页面布局发生了变化、元素位置发生了变化 left， top、 margin-left、等发生改变会触发回流
+    优化: 少使用style 进行位置赋值。少使用fixed属性
+    使用 ransform: translateZ()  会新建一个图层。 新的图层的回流重绘不会影响其他的
+15: js异常捕获
+    try catch 异常捕获 // 捕获try 块内的错误。 但是用起来会比较麻烦。 每个函数外部都需要包一个try catch// 只能捕获到运行是错误。 语法错误和setimeout 错误捕获不到
+    window.addEventListener('error', function() {}, true) // 可以捕获图片加载失败等静态资源错误 
+    window.onerror = function() {} // 可以捕获语法错误和异步错误
+    window.addEventListener('unhandledrejection', function(){}) // 捕获Proimse错误 // 封装network 统一处理reject
+    window.addEventListener('rejectionhandled', function() {})
+    window.onerror 和 window.addEventListener('error') // 事件监听器和事件处理器等区别
+    Vue.config.errorHandler`
+16: 怎么理解面向对象编程和面向过程编程
+    【面向过程】
+        分析问题解决所需要的步骤。然后把函数把这些一步步实现。使用的时候一步步调用。
+        简单、好理解
+    【面向对象】
+      面向对象更抽象一些。和面向对象的侧重点不一样。 将编程当成一个事物、面向对象强调事物本身
+      让事物具有解决问题的能力。增加属性或者方法。复用性，易维护。
+        
+17: commonjs amd cmd umd
+   【commonjs】: module.exports
+   【amd】: 依赖前置
+     require('ajaxjs', function() {
+
+    })
+   【cmd】 就近原则 按需加载依赖
+
+18: 怎么理解webpack 模块化
+    我们使用es6 或者commonjs 规范进行模块开发。
+    webpack 会从入口文件开始 一步步去去分析入口文件的依赖关系。
+    遇到不同的文件（.vue、less、css 等文件） 或者语法() 通过不同等loader去处理 。 
+    模块化很好的处理了模块和模块之间的依赖关系。
+19: webpack 怎么做性能优化
+    webpack做性能优化主要分为两个方面
+    【】第一是打包速度|运行热更新速度
+      1: 缩小文件搜索范围 loader配置的时候指定 include 和 excloud
+      2: 配置别名alisa : 精确指明需要依赖的文件
+      3: 配置extensions (文件扩展名)
+      4: 终极大法 dllplugin (预打包)  预打包一些改动比较小的第三方依赖库 （vue、vue-router、element-ui等）
+       (又一个不好的地方就是依赖包改变了之后容易忘记重新dll)
+      5: HappyPack 开启多进程loader 解析
+     【】第二个是打包后的文件过大。  会造成首屏加载时常过长
+        1: 尽量少使用三方依赖库。loadsh charts等。 实在不行也不要一次行全部引入。 只引入自己可以用到的部分
+        2: 异步路由。 不同的页面分别打包成一个单独的chunks。 不放在首屏加载依赖的的依赖文件里
+        3: css js 压缩 css文件提取
+        4: 去除无效的css样式 
+          js中的代码。 tree-shaking
+           或者CommonsChunkPlugin 提取重复模块 会把所有公共代码提出来
+           spliteChunksPlugin的提取的代码首次用到的时候才会加载  a-b 提成一个   c-d 提成一个 还有好多参数控制
+
+服务器渲染ssr
+
+对优化的一些小感悟: 应该从项目一开始就想好优化策略。 不要一股脑的把用的很少的或者可用可不用的一些依赖包全局引进来。 收好口。
+这样随着项目的变大也不会出现太大的问题， 针对一些小的方面进行一些微调。
+要是一开始不注意。 等到项目发展到一定的阶段 想优化也难了。 历史项目接手的人也不敢动。每次优化还担惊受怕的
+webpack4给我提供了splitchunksplugin
+rem 就是相对html 根结点的相对单位。 一般用rem 解决 移动端不同屏幕的适配问题

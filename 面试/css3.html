@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .demo {
+            width: 100px;
+            height: 100px;
+            background: hotpink;
+            animation: name 3s ease-in;
+        }
+
+        @keyframes name {
+            0% {
+                transform: translateX(0%);
+                transform: skewX(0deg);
+
+            }
+
+            20% {
+                transform: translateX(100%);
+                transform: skewX(20deg);
+            }
+
+            100% {
+                transform: translateX(200%);
+                transform: skewX(45deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo">
+        <div class="content">
+
+        </div>
+    </div>
+</body>
+
+</html>
