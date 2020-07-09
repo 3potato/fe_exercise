@@ -9,6 +9,36 @@
 <body>
     <script>
         /*
+        * 静态属性的继承
+        * */
+
+        class A {
+            constructor() {
+                this.name = 'zhuziqi'
+            }
+            static age = 34
+            getName() {
+
+            }
+            static getAge() {
+                console.log('getAge', 'tag')
+            }
+
+        }
+        class B extends A {
+            constructor() {
+                super()
+            }
+        }
+        console.log(A.getAge())
+        console.log(A.age)
+        var a = new A()
+        console.log(a)
+        console.log('b', B.getAge())
+        console.log('b', B.age)
+
+
+        /*
         * 原型链继承和es6的extend继承是有本质的区别的
         * es6 是通过Object.setPrototypeOf(B.prototype, A.prototype) bject.setPrototypeOf(B, A)实现的继承
         * es5 不能继承 Array、 Boolean、Number, String 等的原生构造函数
@@ -24,8 +54,6 @@
             }
         }
         const ajax = new Ajax('GET', 'http://www.baidu.com')
-        console.log(ajax)
-        console.log(ajax)
         class AjaxGet extends Ajax{
             constructor(url, params) {
                 super('GET', url)
@@ -33,12 +61,15 @@
             }
         }
         var ajaxGet = new AjaxGet('http://maodou.com', {id: 111})
-        console.log(Object.getPrototypeOf(AjaxGet) === Ajax)
+        console.log(ajax)
         console.log(ajaxGet)
         console.log(ajaxGet instanceof Ajax) //  true
         console.log(ajaxGet instanceof AjaxGet) //  true
+        console.log(AjaxGet)
+        console.log(AjaxGet.__proto__)
         console.log(AjaxGet.__proto__ === Ajax)
         console.log(AjaxGet.prototype.__proto__ === Ajax.prototype)
+        console.log(Object.getPrototypeOf(AjaxGet) === Ajax)
     </script>
 </body>
 </html>

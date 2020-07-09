@@ -17,7 +17,18 @@
       background-color: green;
     }*/
 
-    /*2.负外边距居中*/
+    /*2.transform居中*/
+    .container{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40%;
+      height: 40%;
+      background-color: darkseagreen;
+    }
+
+    /*3.负外边距居中*/
     /*.container{
       position: absolute;
       top: 50%;
@@ -29,22 +40,53 @@
       background-color: lightblue;
     }*/
 
-    /*3.transform居中*/
-    .container{
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 40%;
-      height: 40%;
-      background-color: darkseagreen;
-    }
 
+    /* table-cell */
+    .content1 {
+      width: 300px;
+      height: 300px;
+      text-align: center;
+      border: 1px #cccccc solid;
+      /* line-height: 100px; */
+      display: table-cell;
+      vertical-align: middle;
+    }
+    /* flex */
+    .content2 {
+      width: 300px;
+      height: 300px;
+      border: 1px #cccccc solid;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* table */
+    table {
+      width: 300px;
+      height: 300px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
 
   </div>
+
+  <div class="content1">
+    <div>
+      居中 table-cell vertical-align: middle
+    </div>
+  </div>
+  <div class="content2">
+    <div>
+      align-items: center
+    </div>
+  </div>
+  <table>
+    <tr>
+      <td>11112121211</td>
+      <td>222</td>
+    </tr>
+  </table>
 </body>
 </html>

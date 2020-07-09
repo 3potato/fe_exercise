@@ -24,6 +24,7 @@ function bubbleSort(arr) {
 
 
 
+
 // 3. 快排
 function quickSort (arr) {
     if (arr.length <= 1) return arr
@@ -40,3 +41,42 @@ function quickSort (arr) {
     })
     return [...quickSort(left), arr[middle], ...quickSort(right)]
 }
+
+
+
+// 4. 选择排序
+// sort 方法排序
+// 选择排序
+// 比较 第 minIndex 和 【2 -  结束的】 谁比一小 谁和换
+function selectSort(array) {
+    var temp  = ''
+    var minIndex = ''
+    for (let i = 0; i < array.length-1; i++) {
+        minIndex = i // 假设 最小值的索引等于i=0
+        for(let j = i+1; j<array.length; j++) {
+            if(array[i]< array[j]) {
+                [ array[i], array[j]] = [array[j], array[i]]
+            }
+        }
+    }
+    return array
+}
+console.log(selectSort([3,1,2,4,6]), 'selectSort')
+// 选择排序
+function selectionSort(arr) {
+    var len = arr.length;
+    var minIndex, temp;
+    for (var i = 0; i < len - 1; i++) {
+        minIndex = i;
+        for (var j = i + 1; j < len; j++) {
+            if (arr[j] < arr[minIndex]) {     // 寻找最小的数
+                minIndex = j;                 // 将最小数的索引保存
+            }
+        }
+        temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+    }
+    return arr;
+}
+console.log(selectionSort([4,2,1,6,7,1], 'selectionSort'))

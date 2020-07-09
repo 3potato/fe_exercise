@@ -5,5 +5,3 @@ function _new(fn, ...arg) {
     const result = fn.apply(obj, ...arg);
     return Object.prototype.toString.call(result) == '[object Object]' ? result : obj;
 }
-
-

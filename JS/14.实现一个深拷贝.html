@@ -9,6 +9,17 @@
 
 <script type="text/javascript">
 
+    /*
+        * 基本类型
+        * 引用类型
+        * 深克隆、浅克隆
+        * JSON.parse JSON.stringfly,
+            无法实现对对函数 、RegExp等特殊对象的克隆、
+            会抛弃对象的constructor,所有的构造函数会指向Object;
+            会丢失原型链上的属性和方法, constructor指向Object
+        *  Object.assgin 只能复制一层 浅克隆
+        */
+
     // 使用hash
     function cloneDeep(source, hash = new WeakMap()) {
 

@@ -1,8 +1,0 @@
-1: xss: 跨站脚本攻击
- httponly 禁止防止cookie 读取
- 输入检查、 对输入值进行校验 主要是对特殊字符 < > & \n
-2: crfs跨站请求伪造
-    劫持受信任用户向服务端发送非预期的请求
-    借助受害者的cookie 伪造信息骗取服务端的信任
-    验证码
-    referer check http 头部信息referer字段记录了http请求的来源地址
