@@ -31,3 +31,37 @@ function print (num) {
     }
     return arr
 }
+
+
+// 计算n行的m位数
+function count (n, m) {
+    if( m > n){
+        return false
+    }
+    if( m == 1 || m == n){
+        return 1
+    }
+
+    return count(n-1, m-1 ) + count( n-1, m )
+}
+
+// 打印杨辉三角
+function count (n, m) {
+    if( m > n){
+        return false
+    }
+    if( m == 1 || m == n){
+        return 1
+    }
+    return count(n-1, m-1 ) + count( n-1, m )
+}
+function Print (n){
+    for( let i = 1;  i <= n ;i++){
+        let num = ''
+        for( let j=1;j<=i; j++){
+            num += count(i, j)+ ' '
+        }
+        console.log(num+'\n')
+    }
+}
+Print(10)
