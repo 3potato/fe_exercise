@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        * 仿照vue event bus  非父子组建的通信模式
+        * 其实就是典型的 发布订阅模式
+        */
+        /*
+        * 先实现一个典型的发布订阅模式
+        */
+        class Observer {
+            constructor() {
+                this.watchList  = {} //这个对象用来存放所有观察着, 到时候会根据key来通知他们, 因为他们不一定订阅了所有的发布消息, 只通知给他们他们需要知道的
+            }
+            //增加订阅者
+            on(key, watcher) { // 用来收集订阅着/观察者
+                if(!this.watchList[key]) { // 如果这个事件目前什么还观察者。 那就 声明一个数组
+                    this.watchList[key] = []
+                }
+                this.watchList[key].push(watcher) // 把观察者 放进去
+            }
+            //发布消息
+            emit(key, content) {
+                if(this.watchList[key]) { // 如果这个事件有观察者。 则挨个通知
+                    for(let watcher in this.watchList[key]) {
+                        this.watchList[key][watcher].call(this,content)
+                    } 
+                }else {
+                    console.log(key+ '事件还没有订阅者,你别发布了')
+                }
+            }
+            // 取消订阅者
+            remove(key, watcher) {
+                if(!this.watchList[key]) {
+                    console.log('这个事件没人订阅过。没什么可删除的')
+                }else {
+                    for( let i = this.watchList[key].length -1; i>=0;i--) {
+                        if(watcher == this.watchList[key][i]) {
+                            console.log('把'+ key + '事件的观察者'+ watcher+ '取消掉')
+                            this.watchList[key].splice(i,1)
+                        }
+                    }
+                }
+            }
+
+        }
+        var observer = new Observer()
+        observer.on('book', fn1 =  (content) => {// book 这个事件添加了 一个订阅者
+            console.log('店铺上新书了，大家快来买啊! 这次上的新书叫:'+ content)
+        })
+        observer.on('book', fn2 =  (content) => { // book 这个事件有多了个订阅者
+            console.log('瀚海书店上新书了, 书的名字叫:' + content)
+        })
+        observer.on('map3', f3 =  (content) => { // map3 这个商品多了个订阅者
+            console.log('这次不卖书了, 这次卖map3:' + content)
+        })
+        observer.emit('book', '基督山伯爵') // book商品上新了, emit会通知订阅他的所有观察者
+        observer.emit('map3', '索尼mp3') // book商品上新了, emit会通知订阅他的所有观察者
+        observer.remove('book', fn1)
+        observer.emit('book', '水浒传') // book商品上新了, emit会通知订阅他的所有观察者
+
+    </script>
+</body>
+</html>

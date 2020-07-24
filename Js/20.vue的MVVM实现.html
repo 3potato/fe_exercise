@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Template</title>
+</head>
+<body>
+<!-- proxy-1 -->
+    <input type="text" id="model">
+    <p id="word"></p>
+
+<!-- proxy-2 -->
+    <b id="count"></b>
+    <button onclick="increase()">+</button>
+    <button onclick="decrease()">-</button>
+
+<!-- 发布订阅 -->
+    <div id="foo"></div>
+    <input type="text" name="" id="bar"/>
+</body>
+<script>
+
+    /* proxy-1  */
+    const model = document.getElementById("model")
+    const word = document.getElementById("word")
+    var obj= {};
+
+    const newObj = new Proxy(obj, {
+        get: function(target, key, receiver) {
+            console.log(`getting ${key}!`);
+            return Reflect.get(target, key, receiver);
+        },
+        set: function(target, key, value, receiver) {
+            console.log('setting',target, key, value, receiver);
+            if (key === "text") {
+                model.value = value;
+                word.innerHTML = value;
+            }
+            return Reflect.set(target, key, value, receiver);
+        }
+    });
+
+    model.addEventListener("keyup",function(e){
+        newObj.text = e.target.value
+    })
+
+    /* proxy-2  */
+    const data = { count: 0 };
+    const proxy = new Proxy(data, {
+        get(target, property) {
+            return target[property];
+        },
+        set(target, property, value) {
+            target[property] = value;
+            render(value);
+        }
+    });
+
+    render(proxy.count);
+
+    function render(value) {
+        document.getElementById('count').innerHTML = value;
+    }
+
+    function increase() {
+        proxy.count += 1;
+    }
+
+    function decrease() {
+        proxy.count -= 1;
+    }
+
+
+
+    /* 发布订阅 */
+    class Watcher {
+        constructor(cb) {
+            this.cb = cb;
+        }
+
+        update() {
+            this.cb()
+        }
+    }
+
+    class Dep {
+        constructor() {
+            this.subs = [];
+        }
+
+        publish() {
+            this.subs.forEach((item) => {
+                item.update && item.update();
+            })
+        }
+    }
+
+    class MVVM {
+        constructor(data) {
+            let that = this;
+            this.dep = new Dep();
+            this.data = new Proxy(data, {
+                get(obj, key, prox) {
+                    that.dep.target && that.dep.subs.push(that.dep.target);
+                    return obj[key]
+                },
+                set(obj, key, value, prox) {
+                    obj[key] = value;
+                    that.dep.publish();
+                    return true;
+                }
+            })
+            this.compile();
+        }
+
+        compile() {
+            let divWatcher = new Watcher(() => {
+                this.compileUtils().div();
+            })
+            this.dep.target = divWatcher;
+            this.compileUtils().div();
+            this.dep.target = null;
+
+            this.compileUtils().input();
+            this.compileUtils().addListener();
+        }
+
+        compileUtils() {
+            let that = this;
+            return {
+                div() {
+                    document.getElementById('foo').innerHTML = that.data.bar;
+                },
+                input() {
+                    document.getElementById('bar').value = that.data.bar;
+                },
+                addListener() {
+                    document.getElementById('bar').addEventListener('input', function (e) {
+                        that.data.bar = e.target.value;
+                    })
+                }
+            }
+        }
+    }
+
+    let mvvm = new MVVM({bar: 'bar233'})
+
+</script>
+</html>

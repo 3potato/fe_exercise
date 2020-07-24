@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+</body>
+<script  type="text/javascript">
+
+
+
+
+    //第二种
+    var arr = [112,112,34,'你好',112,112,34,'你好','str','str1'];
+
+    Array.prototype.unique3 = function(){
+        var res = [];
+        var obj = {};
+        for(var i = 0; i < this.length; i++){
+            if(!obj[this[i]]){
+                res.push(this[i]);
+                obj[this[i]] = 1;
+            }
+        }
+        return res;
+    }
+    console.log(arr.unique3())
+
+    //数组相同属性合并值
+    var arr = [{
+      UID: "222",
+      value: "111"
+    }, {
+      UID: "222",
+      value: "103"
+    }, {
+      UID: "123",
+      value: "302"
+    }, {
+      UID: "123",
+      value: "031"
+    }]
+    function handle(arr) {
+        var res = [],
+            obj = {},
+            index = 0;
+        arr.forEach(val => {
+            if (obj.hasOwnProperty(val.UID)) {
+                res[obj[val.UID]].value = res[obj[val.UID]].value + ',' + val.value;
+            } else {
+                obj[val.UID] = index++;
+                res.push({
+                    UID: val.UID,
+                    value: val.value
+                });
+            }
+        });
+        return res;
+    }
+
+    console.log(handle(arr))
+
+</script>
+</html>

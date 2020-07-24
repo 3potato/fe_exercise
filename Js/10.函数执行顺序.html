@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Template</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+    /*
+    test
+    fn - start
+    test done
+    fn - end
+    */
+
+    let fn = (params)=>{
+        console.log('fn - start');
+        console.log(params);
+        console.log('fn - end');
+    }
+
+    let test = ()=>{
+        console.log('test');
+        return 'test done'
+    }
+    fn(test())
+
+</script>
+</body>
+</html>

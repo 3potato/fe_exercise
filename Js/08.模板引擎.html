@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Template</title>
+</head>
+<body>
+
+<div id="results"></div>
+
+<script type="text/html" id="user_tmpl">
+    <ul>
+        <%=users.name%>
+        <%=users.url%>
+    </ul>
+</script>
+
+<script type="text/javascript">
+  var results = document.getElementById("results");
+  var users={
+    "name":"Byron",
+    "url":"http://localhostssss1111"
+  }
+  html='<%=name%><%=url%>'
+  function tmpl(html,data){
+
+    var result="var p=[];with(obj){p.push('"
+      +html.replace(/[\r\n\t]/g," ")
+        .replace(/<%=(.*?)%>/g,"');p.push($1);p.push('")
+        .replace(/<%/g,"');")
+        .replace(/%>/g,"p.push('")
+      +"');}return p.join('');";
+    var fn=new Function("obj",result);
+    return fn(data);
+  }
+
+  results.innerHTML = tmpl(html, users);
+</script>
+</body>
+</html>
