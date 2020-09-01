@@ -20,7 +20,21 @@ function bubbleSort(arr) {
     console.log(arr);
 }
 
+
 // 2. 插入排序
+function insertSort(arr) {
+    for (let i = 1; i < arr.length; i++) {
+        for (let j = i; j > 0; j--) {
+            if (arr[j] < arr[j - 1]) {
+                // swap(arr, i, j)
+                [ arr[j], arr[j - 1] ] = [ arr[j - 1], arr[j] ]
+            } else {
+                break
+            }
+        }
+    }
+    console.log(arr);
+}
 
 
 
