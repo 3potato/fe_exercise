@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+         
+
+    </style>
+</head>
+<body>
+    <div class="test1" id="div1">1</div>
+    <div class="test2" id="div2">2</div>
+    <div class="test3" id="div3">3</div>
+    <div class="test4" id="div4">4</div>
+    <div class="test5" id="div5">5</div>
+    <div class="test6" id="div6">6</div>
+</body>
+<script  type="text/javascript">
+    var data = [
+        {id:1,title:'a',pid:0},
+        {id:2,title:'a1',pid:1},
+        {id:3,title:'a11',pid:2},
+        {id:4,title:'a12',pid:2},
+        {id:5,title:'a2',pid:1},
+        {id:6,title:'a21',pid:5}
+    ]
+
+    function handleData (data, pid){
+        var result = [] 
+        var temp = []
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].pid == pid) {
+                var obj = data[i]
+                temp = handleData(data, data[i].id)
+                if (temp) {
+                    data[i].children = temp
+                }
+                result.push(obj)
+            }
+        }
+        return result
+    }
+
+    console.log(handleData(data, 0))
+
+   
+    
+</script>
+</html>
